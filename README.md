@@ -399,7 +399,7 @@ Clone nuestra habitación del metaverso desde Github
 
 ```
 
-sudo git clone https://github.com/santiago990208/FoodVerse.git .
+sudo git clone https://github.com/santiago990208/FoodVerse-MadhacksFY23.git .
 
 ```
 ## Probar
