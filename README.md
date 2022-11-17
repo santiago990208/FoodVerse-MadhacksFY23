@@ -1,4 +1,4 @@
-# FoodVerse Metaverso en OCI
+# Metaverso en OCI
 
 Este proyecto tiene como objetivo el demostrar como se puede tener un propio metaverso en la capa gratuita de [Oracle Cloud Infrastructure](https://www.oracle.com/lad/cloud/?source=:ad:pas:go:dg:a_lad:71700000084109784-58700007131906662-p73965233666:RC_WWMK220512P00038C0001:MainAd&gclid=Cj0KCQiAsdKbBhDHARIsANJ6-jcOjEMVw37CqHwhCcq_AJmnqqxAyMyf30lCp3l8cYb_-mCkvydxTQUaApA2EALw_wcB&gclsrc=aw.ds) (OCI)
 
@@ -8,6 +8,8 @@ En los siguientes puntos se explicara :
    - [Crear cuenta](#crear-cuenta)
    - [Configurar instancia](#configurar-instancia)
    - [Configurar VCN](#configurar-vcn)
+   - [Configurar Políticas](#configurar-politicas)
+   - [Crear Servidor](#crear-servidor)
  - [Conectarse a la instancia](#conectarse-a-la-instancia)
  - [Configurar servidor NGINX](#configurar-servidor-nginx)
  - [Despliegue del proyecto en el servidor](#despliegue-del-proyecto-en-el-servidor)
@@ -229,6 +231,41 @@ sudo firewall-cmd --reload
 
 
 ```
+### Create a custom NGINX configuration
+Para cambiar la ruta raíz de su servidor web, no edite el archivo /etc/nginx/nginx.conf directamente. En su lugar, como método preferido, cree una configuración específica del sitio en el directorio /etc/nginx/conf.d. Por ejemplo, cree el archivo /etc/nginx/conf.d/default.conf y complételo con una configuración para su sitio.
+```
+## Crear un directorio para alojar un nuevo sitio
+sudo mkdir /srv/website
+
+## Crear index.html dummy
+cat << EOF | sudo tee /srv/website/index.html
+<html>
+<head>
+<title>Hello</title>
+</head>
+<body><p>Hello World!</p></body>
+</html>
+EOF
+
+## Actualizar permisos
+sudo chown -R nginx:nginx /srv/website
+sudo chcon -Rt httpd_sys_content_t /srv/website
+
+## Crear configuración NGINX personalizada
+cat <<EOF | sudo tee /etc/nginx/conf.d/default.conf
+server {
+  server_name    <IP_address>;
+  root           /srv/website;
+  index          index.html;
+}
+EOF
+
+## reiniciar NGINX
+sudo systemctl restart nginx
+
+## Para depurar y ver problemas de conexión siguiendo los archivos de registro
+sudo tail -f /var/log/nginx/access.log -f /var/log/nginx/error.log
+```
 #### Configuración HTTPS
 
 Esto es necesario para usar Aframe en modo VR/AR y tener acceso a los sensores del dispositivo.
@@ -343,33 +380,34 @@ sudo dnf install git
 
 ```
 
+Cree un directorio 
+
+```
+## Crear un directorio para alojar un nuevo sitio
+sudo mkdir /srv/website
+```
+
 Elimine los archivos  dummy
-
-/srv/website
-
 ```
-
 cd /srv/website/
-
 sudo rm index.html
-
 ```
 
-Clone repositorio desde Github https://github.com/santiago990208/FoodVerse-MadhacksFY23
+Clone nuestra habitación del metaverso desde Github
 
 (asegúrese de conservar el “.” ya que queremos tener el contenido del repositorio en nuestro folder)
 
 ```
 
-sudo git clone https://github.com/santiago990208/FoodVerse-MadhacksFY23.git .
+sudo git clone https://github.com/santiago990208/FoodVerse.git .
 
 ```
 ## Probar
-Asegurese que todo funciona correctamente conectándose a:
+Asegurese que todo funciona correctamente conectándoselo a:
 
 https://<IP_address>/
 ## Anexos
 
-- [Aframe docs ]( https://aframe.io/docs/0.8.0/introduction/)
-- [OCI docs ](https://docs.oracle.com/en-us/iaas/Content/home.htm)
-- [Figuras 3D ](https://sketchfab.com/3d-models)
+[Aframe docs ]( https://aframe.io/docs/0.8.0/introduction/)
+[OCI docs ](https://docs.oracle.com/en-us/iaas/Content/home.htm)
+[Figuras 3D ](https://sketchfab.com/3d-models)
