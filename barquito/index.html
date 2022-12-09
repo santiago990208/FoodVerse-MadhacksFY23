@@ -47,10 +47,14 @@
       <img id="src-barra" src="assets/Barra.jpg" />
       <img id="src-pared" src="assets/Paredes y columnas.jpg" />
       <img id="src-menu" src="assets/PORTADA _MENU.png" />
+      <img id="src-menu-new" src="assets/PORTADA _MENU-new.png" />
       <img id="src-cuadro1" src="assets/cuadro1.jpeg" />
       <img id="src-cuadro2" src="assets/cuadro2.jpeg" />
+      <img id="src-cuadro1-new" src="assets/cuadro1-new.jpeg" />
+      <img id="src-cuadro2-new" src="assets/cuadro2-new.jpeg" />
       <img id="src-logo" src="assets/logo.png" />
       <img id="src-pelota" src="assets/pelota.png" />
+      <img id="src-pelota-new" src="assets/pelota-new.png" />
       <img id="src-youtube" src="assets/youtube.png" />
       <img id="src-instagram" src="assets/instagram.png" />
       <img id="src-tiktok" src="assets/tiktok.png" />
@@ -75,11 +79,14 @@
       <a-mixin id="barras" material="src: #src-barra"></a-mixin>
       <a-mixin id="barras-mesas" material="color: white"></a-mixin>
       <a-mixin id="paredes" material="src: #src-pared"></a-mixin>
-      <a-mixin id="menus" material="src: #src-menu"></a-mixin>
       <a-mixin id="img-cuadro1" material="src: #src-cuadro1"></a-mixin>
       <a-mixin id="img-cuadro2" material="src: #src-cuadro2"></a-mixin>
+      <a-mixin id="img-cuadro1-new" material="src: #src-cuadro1-new"></a-mixin>
+      <a-mixin id="img-cuadro2-new" material="src: #src-cuadro2-new"></a-mixin>
       <a-mixin id="menus" material="src: #src-menu"></a-mixin>
+      <a-mixin id="menus-new" material="src: #src-menu-new"></a-mixin>
       <a-mixin id="pelotas" material="src: #src-pelota"></a-mixin>
+      <a-mixin id="pelotas-new" material="src: #src-pelota-new"></a-mixin>
 
       <a-mixin id="borders" material="color: black"></a-mixin>
 
@@ -186,14 +193,15 @@
       
       <a-entity id="pared-cuadro" mixin="pared paredes"  position="3.1 0 4.2"></a-entity>
         <!-- cuadros -->
-        <a-entity mixin="cuadro1 img-cuadro1"  position="4.6 2.5 4"></a-entity>
+        <a-entity mixin="cuadro1 img-cuadro1-new"  position="4.6 2.5 4"></a-entity>
         <a-entity mixin="border-cuadro1 borders"  position="4.6 2.5 4.1"></a-entity>
-        <a-entity mixin="cuadro2 img-cuadro2"  position="2 1.5 4"></a-entity>
+        <a-entity mixin="cuadro2 img-cuadro2-new"  position="2 1.5 4"></a-entity>
         <a-entity mixin="border-cuadro2 borders"  position="2 1.5 4.1"></a-entity>
 
       <a-entity id="pared-menu" mixin="pared paredes" scale=" 1 1 2.1" position="-0 0 -4.31"></a-entity>
         <!-- Menu -->
-        <a-entity mixin="menu menus"  position="1 2.5 -4" link-click="href: menu/"></a-entity>
+        
+        <a-entity mixin="menu menus-new"  position="1 2.5 -4" link-click="href: menu/"></a-entity>
         <a-entity mixin="border-menu borders"  position="1 2.5 -4.1"></a-entity>
 
         <!-- Logos -->
@@ -333,12 +341,12 @@
       
       <!-- Pelota playa -->
       <a-entity position="10 5 0" dynamic-body>
-        <a-entity mixin="pelota pelotas">
+        <a-entity mixin="pelota pelotas-new">
         </a-entity>
       </a-entity>
       <!-- Pelota playa -->
       <a-entity position="-10 5 0" dynamic-body>
-        <a-entity mixin="pelota pelotas">
+        <a-entity mixin="pelota pelotas-new">
         </a-entity>
       </a-entity>
     
