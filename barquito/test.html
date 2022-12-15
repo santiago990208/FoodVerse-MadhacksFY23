@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+  </head>
+  <body>
+    <!-- <script>
+        // Or inline before the <a-scene>.
+        AFRAME.registerComponent('hello-world', {
+          init: function () {
+              console.log('Hello, World!');
+          }
+        });
+    </script> -->
+    <script>
+        function contohFunction () {
+        alert("contoh function")
+        }
+    </script>
+    
+    <a-scene>
+        <!-- <a-assets>
+            <img id="form-img" src="assets/tiktok.png" />
+            <iframe id="form" src="form.html" title="description"></iframe>
+        </a-assets> -->
+        <a-camera>
+            <a-gui-cursor design="cross" fuse="false" fuse-timeout="3000" raycast="objects:[gui-interactable]">
+        </a-camera>
+        <a-gui-flex-container panel-color="#FF0000" align-items="middle" flex-direction="column" width="5" height="5" position="0 1.5 -3">
+            <a-gui-flex-container  flex-direction="row" >
+                <a-gui-button value="A" onclick="alert('hello');"></a-gui-button>
+                <a-gui-button value="B" onclick="contohFunction"></a-gui-button>
+                <a-gui-button value="C"></a-gui-button>
+            </a-gui-flex-container>
+            <a-gui-flex-container flex-direction="row">
+                <a-gui-button value="A" onclick="alert('hello');"></a-gui-button>
+                <a-gui-button value="B" onclick="contohFunction"></a-gui-button>
+                <a-gui-button value="C"></a-gui-button>
+            </a-gui-flex-container>
+            <a-gui-flex-container flex-direction="row">
+                <a-gui-button value="A" onclick="alert('hello');"></a-gui-button>
+                <a-gui-button value="B" onclick="contohFunction"></a-gui-button>
+                <a-gui-button value="C"></a-gui-button>
+            </a-gui-flex-container>
+        </a-gui-flex-container >
+    </a-scene>
+  </body>
+</html>
+
+<body>
+
+    
